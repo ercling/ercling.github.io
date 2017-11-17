@@ -6,8 +6,17 @@
     <title>Title</title>
 </head>
 <body>
-<script src="https://ercling.github.io/mf.js" type="text/javascript" ></script>
 <script>
+  (function (w, d, f) {
+    w[f] = function () {(w[f].q = w[f].q || []).push(arguments)};
+    w['_mf_object_name'] = f;
+    var l = document.createElement('script');
+    l.src = 'https://ercling.github.io/mf.js';
+    l.type = 'text/javascript';
+    l.async = true;
+    var s = d.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(l, s);
+  })(window, document, 'mf');
   mf.project = 27; // Your project ID
 
   mf('webpushfcm', 'auto'); // Showing popup after some time
