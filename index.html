@@ -21,6 +21,11 @@
   //  mf.msgSenderId = '587960273742'; // required for webpush messages
   //
   //  mf('webpushfcm', 'auto'); // Showing popup after some time
+
+  function handleSubscriptionError(){
+
+  }
+
   function sendSubscriptionToServer(subscription) {
     const token = subscription.endpoint.split('/').pop();
 
