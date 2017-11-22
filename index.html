@@ -51,8 +51,10 @@
         .then(registration => {
           registration.update();
           console.log('registration', registration)
-          const subscription = registration.pushManager.getSubscription()
-          console.log('subscription', subscription)
+          registration.pushManager.getSubscription()
+            .then(subscription => {
+              console.log('subscription', subscription)
+            })
 
           // navigator.serviceWorker.ready
           //   .then(serviceWorkerRegistration => {
