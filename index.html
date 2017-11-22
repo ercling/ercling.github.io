@@ -55,7 +55,9 @@
           navigator.serviceWorker.ready
             .then(serviceWorkerRegistration => {
               console.log('serviceWorkerRegistration', serviceWorkerRegistration)
-              return serviceWorkerRegistration.pushManager.getSubscription()
+              const s = serviceWorkerRegistration.pushManager.getSubscription()
+              console.log('getSubscription', s)
+              return s
             })
             .then(subscription => {
               console.log('subscription', subscription)
