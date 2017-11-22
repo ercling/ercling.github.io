@@ -51,25 +51,26 @@
         .then(registration => {
           registration.update();
           console.log('registration', registration)
+          const subscription = registration.pushManager.getSubscription()
+          console.log('subscription', subscription)
 
-          navigator.serviceWorker.ready
-            .then(serviceWorkerRegistration => {
-              console.log('serviceWorkerRegistration', serviceWorkerRegistration)
-              console.log('WTF getSubscription', serviceWorkerRegistration.pushManager.getSubscription())
-              return serviceWorkerRegistration.pushManager.getSubscription()
-            })
-            .then(subscription => {
-              console.log('subscription', subscription)
-              if (!subscription) {
-                navigator.serviceWorker.ready
-                  .then(serviceWorkerRegistration => serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true}))
-                  .then(subscription => sendSubscriptionToServer(subscription))
-                  .catch(handleSubscriptionError);
-              } else {
-                sendSubscriptionToServer(subscription);
-              }
-            })
-            .catch(handleSubscriptionError);
+          // navigator.serviceWorker.ready
+          //   .then(serviceWorkerRegistration => {
+          //     console.log('serviceWorkerRegistration', serviceWorkerRegistration)
+          //     return serviceWorkerRegistration.pushManager.getSubscription()
+          //   })
+          //   .then(subscription => {
+          //     console.log('subscription', subscription)
+          //     if (!subscription) {
+          //       navigator.serviceWorker.ready
+          //         .then(serviceWorkerRegistration => serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true}))
+          //         .then(subscription => sendSubscriptionToServer(subscription))
+          //         .catch(handleSubscriptionError);
+          //     } else {
+          //       sendSubscriptionToServer(subscription);
+          //     }
+          //   })
+          //   .catch(handleSubscriptionError);
         })
     })
 
