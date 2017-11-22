@@ -54,6 +54,17 @@
           registration.pushManager.getSubscription()
             .then(subscription => {
               console.log('subscription', subscription)
+
+              if (!subscription) {
+                navigator.serviceWorker.ready
+                  .then(serviceWorkerRegistration =>
+                    serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true})
+                  )
+                  .then(subscription => sendSubscriptionToServer(subscription))
+                  .catch(handleSubscriptionError);
+              } else {
+                sendSubscriptionToServer(subscription);
+              }
             })
 
           // navigator.serviceWorker.ready
