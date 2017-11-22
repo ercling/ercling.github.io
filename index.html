@@ -50,12 +50,15 @@
       navigator.serviceWorker.register(`/yen-service-worker.js?d=1`)
         .then(registration => {
           registration.update();
+          console.log('registration', registration)
 
           navigator.serviceWorker.ready
-            .then(serviceWorkerRegistration =>
-              serviceWorkerRegistration.pushManager.getSubscription()
-            )
+            .then(serviceWorkerRegistration => {
+              console.log('serviceWorkerRegistration', serviceWorkerRegistration)
+              return serviceWorkerRegistration.pushManager.getSubscription()
+            })
             .then(subscription => {
+              console.log('subscription', subscription)
               if (!subscription) {
                 navigator.serviceWorker.ready
                   .then(serviceWorkerRegistration => serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true}))
