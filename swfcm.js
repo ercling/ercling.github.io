@@ -1,6 +1,9 @@
 self.addEventListener('push', function (event) {
   const data = event.data.json()
   data.notification.data = data.data
+  if (data.data.requireInteraction) {
+    data.notification.requireInteraction = true
+  }
   data.notification.data.url = data.notification.click_action
 
   event.waitUntil(self.registration.showNotification(data.notification.title, data.notification))
