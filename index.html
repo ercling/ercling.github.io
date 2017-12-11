@@ -7,82 +7,82 @@
 </head>
 <body>
 <script>
-   // (function (w, d, f) {
-   //   w[f] = function () {(w[f].q = w[f].q || []).push(arguments)};
-   //   w['_mf_object_name'] = f;
-   //   var l = document.createElement('script');
-   //   l.src = 'https://scripts.mailfire.io/build/widget/1.x/v.39.3.js';
-   //   l.type = 'text/javascript';
-   //   l.async = true;
-   //   var s = d.getElementsByTagName('script')[0];
-   //   s.parentNode.insertBefore(l, s);
-   // })(window, document, 'mf');
-   // mf.project = 27; // Your project ID
-   // mf.sw = '//ercling.github.io/swfcm.js'; // service worker URL
-   // mf.msgSenderId = '587960273742'; // required for webpush messages
+    (function (w, d, f) {
+      w[f] = function () {(w[f].q = w[f].q || []).push(arguments)};
+      w['_mf_object_name'] = f;
+      var l = document.createElement('script');
+      l.src = 'https://scripts.mailfire.io/build/widget/1.x/v.40.js';
+      l.type = 'text/javascript';
+      l.async = true;
+      var s = d.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(l, s);
+    })(window, document, 'mf');
+    mf.project = 27; // Your project ID
+    mf.sw = '//ercling.github.io/swfcm.js'; // service worker URL
+    mf.msgSenderId = '587960273742'; // required for webpush messages
 
-   // mf('webpushfcm', 'auto'); // Showing popup after some time
+    mf('webpushfcm', 'auto'); // Showing popup after some time
 
-  function handleSubscriptionError(){
-
-  }
-
-  function sendSubscriptionToServer(subscription) {
-    const token = subscription.endpoint.split('/').pop();
-
-    // Just for dev purposes
-    Site.reg_id = token;
-    console.log('token', token);
-
-    post(
-      pushEndpoint,
-      {
-        token,
-        'time_zone': encodeURIComponent(getTimeZone(new Date().getTimezoneOffset()))
-      }
-    );
-  }
-
-  Notification.requestPermission()
-    .then(result => {
-      console.log('permission', result)
-
-      navigator.serviceWorker.register(`/yen-service-worker.js?d=1`)
-        .then(registration => {
-          registration.update();
-          console.log('registration', registration)
-          registration.pushManager.getSubscription()
-            .then(subscription => {
-              console.log('subscription', subscription)
-
-              if (!subscription) {
-                registration.pushManager.subscribe({userVisibleOnly: true})
-                  .then(subscription => sendSubscriptionToServer(subscription))
-                  .catch(handleSubscriptionError);
-              } else {
-                sendSubscriptionToServer(subscription);
-              }
-            })
-
-          // navigator.serviceWorker.ready
-          //   .then(serviceWorkerRegistration => {
-          //     console.log('serviceWorkerRegistration', serviceWorkerRegistration)
-          //     return serviceWorkerRegistration.pushManager.getSubscription()
-          //   })
-          //   .then(subscription => {
-          //     console.log('subscription', subscription)
-          //     if (!subscription) {
-          //       navigator.serviceWorker.ready
-          //         .then(serviceWorkerRegistration => serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true}))
-          //         .then(subscription => sendSubscriptionToServer(subscription))
-          //         .catch(handleSubscriptionError);
-          //     } else {
-          //       sendSubscriptionToServer(subscription);
-          //     }
-          //   })
-          //   .catch(handleSubscriptionError);
-        })
-    })
+//  function handleSubscriptionError(){
+//
+//  }
+//
+//  function sendSubscriptionToServer(subscription) {
+//    const token = subscription.endpoint.split('/').pop();
+//
+//    // Just for dev purposes
+//    Site.reg_id = token;
+//    console.log('token', token);
+//
+//    post(
+//      pushEndpoint,
+//      {
+//        token,
+//        'time_zone': encodeURIComponent(getTimeZone(new Date().getTimezoneOffset()))
+//      }
+//    );
+//  }
+//
+//  Notification.requestPermission()
+//    .then(result => {
+//      console.log('permission', result)
+//
+//      navigator.serviceWorker.register(`/yen-service-worker.js?d=1`)
+//        .then(registration => {
+//          registration.update();
+//          console.log('registration', registration)
+//          registration.pushManager.getSubscription()
+//            .then(subscription => {
+//              console.log('subscription', subscription)
+//
+//              if (!subscription) {
+//                registration.pushManager.subscribe({userVisibleOnly: true})
+//                  .then(subscription => sendSubscriptionToServer(subscription))
+//                  .catch(handleSubscriptionError);
+//              } else {
+//                sendSubscriptionToServer(subscription);
+//              }
+//            })
+//
+//          // navigator.serviceWorker.ready
+//          //   .then(serviceWorkerRegistration => {
+//          //     console.log('serviceWorkerRegistration', serviceWorkerRegistration)
+//          //     return serviceWorkerRegistration.pushManager.getSubscription()
+//          //   })
+//          //   .then(subscription => {
+//          //     console.log('subscription', subscription)
+//          //     if (!subscription) {
+//          //       navigator.serviceWorker.ready
+//          //         .then(serviceWorkerRegistration => serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true}))
+//          //         .then(subscription => sendSubscriptionToServer(subscription))
+//          //         .catch(handleSubscriptionError);
+//          //     } else {
+//          //       sendSubscriptionToServer(subscription);
+//          //     }
+//          //   })
+//          //   .catch(handleSubscriptionError);
+//        })
+//    })
 
 </script>
 
