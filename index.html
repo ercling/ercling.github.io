@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--Provide gcm_sender_id via manifest.json -->
+    <!--Provide gcm_sender_id via manifest.json.
+     gcm_sender_id is needed to route FCM messages to the correct service worker.
+     Note: The gcm_sender_id is required for Chrome prior to version 52, Opera Android, and Samsung Internet.
+     https://developers.google.com/web/ilt/pwa/introduction-to-push-notifications
+     -->
     <link rel="manifest" href="/manifest.json">
     <meta charset="UTF-8">
     <title>Title</title>
@@ -22,7 +26,10 @@
     mf.sw = '//ercling.github.io/swfcm.js'; // service worker URL
     mf.msgSenderId = '587960273742'; // required for webpush messages
 
-    mf('webpushfcm', 'auto'); // Showing popup after some time
+    // mf('webpushfcm', 'auto'); // Showing popup after some time
+    mf('webpushfcm', 'init');
+    mf('webpushfcm', 'showPopup');
+
 
 //  function handleSubscriptionError(){
 //
