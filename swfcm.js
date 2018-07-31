@@ -1,3 +1,5 @@
+self.skipWaiting()
+
 self.addEventListener('push', function (event) {
   const data = event.data.json()
   data.notification.data = data.data
