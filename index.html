@@ -11,33 +11,26 @@
     <title>Title</title>
 </head>
 <body>
-<img src="https://n.mailfire.io/online/148" style="display:none"  width="1" height="1" />
+
 <script>
-    (function (w, d, f) {
-      w[f] = function () {(w[f].q = w[f].q || []).push(arguments)};
-      w['_mf_object_name'] = f;
-      var l = document.createElement('script');
-      l.src = 'latest.js';
-      l.type = 'text/javascript';
-      l.async = true;
-      var s = d.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(l, s);
-    })(window, document, 'mf');
-    mf.project = 148; // Your project ID
-    mf.sw = 'swfcm.js'; // service worker URL
-    mf.msgSenderId = '587960273742'; // required for webpush messages
-    mf.debug = 'true';
-
-    //mf('webpushfcm', 'auto'); // Showing popup after some time
-    // mf('init', 'custom');
-    // mf('init', 'watcher');
-    mf('webpushfcm', 'init');
-    // mf('webpushfcm', 'showPopup');
-    mf('webpushfcm', 'subscribe');
-
+  window.addEventListener('load', function () {
+    if (!'serviceWorker' in navigator) {
+      console.log('Service workers aren\'t supported in this browser.');
+      return;
+    }
+    navigator.serviceWorker.register('/tuko-service-worker.js').then(function (reg) {
+      if (reg.installing) {
+        console.log('Service worker installing');
+      } else if (reg.waiting) {
+        console.log('Service worker installed');
+      } else if (reg.active) {
+        console.log('Service worker active');
+      }
+    });
+  });
 </script>
 
 
-FCM works!
+Webpush test
 </body>
 </html>
