@@ -18,7 +18,7 @@
       console.log('Service workers aren\'t supported in this browser.');
       return;
     }
-    navigator.serviceWorker.register('/tuko-service-worker.js').then(function (reg) {
+    navigator.serviceWorker.register('/curr-yen-service-worker.js').then(function (reg) {
       if (reg.installing) {
         console.log('Service worker installing');
       } else if (reg.waiting) {
