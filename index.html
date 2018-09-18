@@ -1,36 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="">
 <head>
-    <!--Provide gcm_sender_id via manifest.json.
-     gcm_sender_id is needed to route FCM messages to the correct service worker.
-     Note: The gcm_sender_id is required for Chrome prior to version 52, Opera Android, and Samsung Internet.
-     https://developers.google.com/web/ilt/pwa/introduction-to-push-notifications
-     -->
-    <link rel="manifest" href="/manifest.json">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
     <title>Title</title>
 </head>
-<body>
+<body style="height: 100%">
 
+</body>
 <script>
-  window.addEventListener('load', function () {
-    if (!'serviceWorker' in navigator) {
-      console.log('Service workers aren\'t supported in this browser.');
-      return;
-    }
-    navigator.serviceWorker.register('/curr-yen-service-worker.js').then(function (reg) {
-      if (reg.installing) {
-        console.log('Service worker installing');
-      } else if (reg.waiting) {
-        console.log('Service worker installed');
-      } else if (reg.active) {
-        console.log('Service worker active');
-      }
-    });
-  });
+  (function (w, d, f) {
+    w[f] = function () {(w[f].q = w[f].q || []).push(arguments)};
+    w['_mf_object_name'] = f;
+    var l = document.createElement('script');
+    l.src = 'https://scripts3.mailfire.io/build/widget/wrapper.js';
+    l.type = 'text/javascript';
+    l.async = true;
+    var s = d.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(l, s);
+  })(window, document, 'mf');
+
+  mf.project = 16873; // <- Your project ID
+  mf.msgSenderId = 455486117402;
+  mf.sw = 'swfcm.js' // <- Your service worker here
+  // mf.email = 'test@gmail.com'
+
 </script>
 
+FCM push test page
 
-Webpush test
-</body>
 </html>

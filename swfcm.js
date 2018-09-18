@@ -6,6 +6,11 @@ self.addEventListener('push', function (event) {
   if (data.data.requireInteraction) {
     data.notification.requireInteraction = true
   }
+
+  if (data.data.image) {
+    data.notification.image = data.data.image;
+  }
+
   data.notification.data.url = data.notification.click_action
 
   event.waitUntil(self.registration.showNotification(data.notification.title, data.notification))
